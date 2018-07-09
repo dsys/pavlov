@@ -1,0 +1,100 @@
+extend type Query {
+  # Retireves an IP address.
+  person(
+    # The unique identifier of the person.
+    id: ID
+
+    # The email address of the person to look up.
+    email: String
+  ): Person
+}
+
+# A person
+type Person implements Entity {
+  # The unique identifier of the Person
+  id: ID!
+
+  # The name of the person
+  display: String!
+
+  # The primary name of the person
+  primaryName: PersonName
+
+  # The time this person was born
+  dateOfBirth: Timestamp
+
+  # Education this person has received 
+  educationExperiences: [EducationExperience!]!
+
+  # Emails associated with this person
+  emails: [Email!]!
+
+  # The gender identity of this person
+  gender: String
+
+  # Images associated with this person
+  images: [Image!]!
+
+  # Interests of this person
+  interests: [String!]!
+
+  # The launguages this person speaks
+  languages: [Language!]!
+
+  # Locations of this person
+  locations: [Location!]!
+
+  # Names this person goes by
+  names: [PersonName!]!
+
+  # Phone numbers associated with this person
+  phoneNumbers: [PhoneNumber!]!
+
+  # Other people this person is related to
+  relatedPeople: [Person!]!
+
+  # Skills of this person
+  skills: [String!]!
+
+  # Social media profiles and accounts of this person
+  socialProfiles: [SocialProfile!]!
+
+  # Websites this person has
+  websites: [Website!]!
+
+  # Work experience of this person
+  workExperiences: [WorkExperience!]!
+}
+
+# The name of a given person
+type PersonName implements Entity {
+  # The unique identifier of the PersonName
+  id: ID!
+
+  # The name of the person
+  display: String!
+
+  # The first name of a person
+  firstName: String
+
+  # Whether this is the primary name a person uses
+  isPrimary: Boolean
+
+  # The last name of a person
+  lastName: String
+
+  # The middle name of a person
+  middleName: String
+
+  # The person this name refers to
+  person: Person!
+
+  # Prefix for this person
+  prefix: String
+
+  # Suffix for this person
+  suffix: String
+
+  # The title of the person
+  title: String
+}

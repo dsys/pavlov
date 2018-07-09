@@ -1,0 +1,15 @@
+enabled: true
+replicas: 4
+image:
+  repository: us.gcr.io/cleargraph-mono/console
+  pullPolicy: Always
+service:
+  type: NodePort
+  externalPort: 80
+resources:
+  limits:
+    cpu: 500m
+    memory: 2Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi

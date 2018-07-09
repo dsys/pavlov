@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-phpmyadmin
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  type: {{ .Values.phpmyadmin.service.type }}
+  ports:
+  - name: http
+    port: {{ .Values.phpmyadmin.service.externalPort }}
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: wordpress
+    role: phpmyadmin

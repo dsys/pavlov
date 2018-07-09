@@ -1,0 +1,25 @@
+{
+  "index_patterns": ["targets*"],
+  "settings": {
+    "number_of_shards": 5
+  },
+  "mappings": {
+    "target": {
+      "_source": {
+        "enabled": false
+      },
+      "properties": {
+        "database": { "type": "keyword" },
+        "workflow": { "type": "keyword" },
+        "environment": { "type": "keyword" },
+        "keys": { "type": "keyword" },
+        "label": { "type": "keyword" },
+        "score": { "type": "float" },
+        "reasons": { "type": "text" },
+        "aliases": { "type": "keyword" },
+        "created_at": { "type": "date" },
+        "updated_at": { "type": "date" }
+      }
+    }
+  }
+}

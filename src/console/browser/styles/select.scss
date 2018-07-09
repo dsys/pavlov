@@ -1,0 +1,7 @@
+// colors from src/console/browser/colors.js
+$select-input-border-focus: #EEE;
+$select-option-focused-bg:  #DDD;
+$select-option-selected-bg: #EEE;
+$select-menu-max-height: 480px;
+$select-clear-hover-color: #E82C0C;
+@import "~react-select/scss/default.scss";

@@ -1,0 +1,36 @@
+INSERT INTO
+  entity_graph.locations (
+    name,
+    continent,
+    country,
+    is_primary,
+    latitude,
+    locality,
+    longitude,
+    po_box,
+    postal_code,
+    region,
+    state,
+    street_address,
+    timezone,
+    type
+  )
+VALUES
+  (
+    ${name},
+    ${continent},
+    ${country},
+    ${isPrimary},
+    ${latitude},
+    ${locality},
+    ${longitude},
+    ${poBox},
+    ${postalCode},
+    ${region},
+    ${state},
+    ${streetAddress},
+    ${timezone},
+    ${type}
+  )
+RETURNING
+  *

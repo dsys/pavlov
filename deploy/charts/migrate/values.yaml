@@ -1,0 +1,12 @@
+enabled: true
+image:
+  repository: us.gcr.io/cleargraph-mono/migrate-util
+  tag: latest
+  pullPolicy: Always
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 20m
+    memory: 128Mi

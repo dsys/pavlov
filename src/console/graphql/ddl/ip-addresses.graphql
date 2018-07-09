@@ -1,0 +1,40 @@
+extend type Query {
+  # Retireves an IP address.
+  ipAddress(
+    # The unique identifier of the IP address.
+    id: ID
+
+    # The address to look up.
+    address: String
+  ): IPAddress
+}
+
+# Fields with which an IP address can be looked up.
+input IPAddressLookupFieldsInput {
+  # The unique identifier of the IP address.
+  id: ID
+
+  # The address to look up.
+  address: String
+}
+
+# An Internet Protocol address.
+type IPAddress implements Entity {
+  # The unique identifier of the IP address.
+  id: ID!
+
+  # The human-readable display of the IP address.
+  display: String!
+
+  # The Internet Protocol (IP) Address, represented in IPv4 or IPv6 format.
+  address: String
+
+  # The websites hosted at this IP address or associated with the organization at this IP address.
+  websites: [Website!]!
+
+  # The location associated with this IP address.
+  location: Location
+
+  # The internet service provider for the IP address.
+  isp: Organization
+}

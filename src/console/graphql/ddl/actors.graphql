@@ -1,0 +1,66 @@
+extend type Query {
+  # Retrieves an actor using their unique identifier.
+  actor(id: ID, email: String): Actor
+}
+
+extend type Mutation {
+  # Creates and resolves an actor using the given resolution fields.
+  resolveActor(lookupFields: ActorLookupFieldsInput): Actor
+}
+
+# The fields that can be used to look up an actor.
+input ActorLookupFieldsInput {
+  # The unique identifier of an existing actor.
+  id: ID
+
+  # The email address of an actor.
+  email: String
+
+  # The name of an actor.
+  name: String
+
+  # The phone number of an actor.
+  phoneNumber: String
+
+  # The IP address of an actor.
+  ipAddress: String
+}
+
+# The fields that were used to look up an actor.
+type ActorLookupFields {
+  # The email address of an actor.
+  email: String
+
+  # The name of an actor.
+  name: String
+
+  # The phone number of an actor.
+  phoneNumber: String
+
+  # The IP address of an actor.
+  ipAddress: String
+}
+
+# An actor is an abstraction over real-world identities, which can be resolved to a known person, ideally. Not enough information may known about an actor to resolve them to a person unambiguously.
+type Actor implements Entity {
+  # The unique identifier of the Actor.
+  id: ID!
+
+  # The display representation of the Actor.
+  display: String!
+
+  # The email address of the actor.
+  email: Email
+
+  # The IP address of the actor.
+  ipAddress: IPAddress 
+
+  # The person associated with the actor.
+  person: Person
+
+  # The person number associated with the actor.
+  phoneNumber: PhoneNumber
+
+  # The fields used to look up and resolve the actor.
+  lookupFields: ActorLookupFields!
+}

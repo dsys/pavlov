@@ -1,0 +1,36 @@
+enabled: true
+web:
+  replicas: 1
+  image:
+    repository: pavlov/yourls
+    tag: latest
+    pullPolicy: Always
+  service:
+    type: NodePort
+    externalPort: 80
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 25m
+      memory: 16Mi
+mariadb:
+  image:
+    repository: mariadb
+    tag: 10.1
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    externalPort: 3306
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 25m
+      memory: 16Mi
+volumes:
+  mariadbData:
+    accessMode: ReadWriteOnce
+    capacity: 8Gi

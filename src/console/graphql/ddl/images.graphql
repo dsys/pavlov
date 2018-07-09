@@ -1,0 +1,78 @@
+extend type Query {
+  # Retrieves an image.
+  image(
+    # The unique identifier of the image.
+    id: ID!
+  ): Image
+}
+
+extend type Mutation {
+  # Resolves an image.
+  resolveImage(
+    # The lookup fields of the image.
+    lookupFields: ImageLookupFieldsInput!
+  ): Image
+}
+
+# The fields that can be used to lookup an image.
+input ImageLookupFieldsInput {
+  # The unique identifier of an existing image.
+  id: ID
+
+  # The key for an uploaded image.
+  file: String
+
+  # The URL of a remote image.
+  url: URL
+
+  # The SHA 256 of an image.
+  sha256: String
+}
+
+# An image.
+type Image implements Entity {
+  # The unique identifier of the image.
+  id: ID!
+
+  # The display name of the image.
+  display: String!
+
+  # The SHA 256 of the image.
+  sha256: String!
+
+  # The content type of the image.
+  contentType: String!
+
+  # The content type of the image.
+  contentLength: Int!
+
+  # The raw URL for the image.
+  rawURL: URL!
+
+  # The width of the image.
+  width: Int!
+
+  # The height of the image.
+  height: Int!
+
+  # The URL for the 512x512 square version of the image.
+  square512URL: URL!
+
+  # The URL for the 64x64 square version of the image.
+  square64URL: URL!
+
+  # Searches for similar images in the database.
+  similarImages(databaseId: ID): [SimilarImage!]!
+
+  # Searches for similar images in the database whose target's have a specific label.
+  similarImagesWithLabel(databaseId: ID, label: String): [SimilarImage!]!
+}
+
+# An image which is similar to another image.
+type SimilarImage {
+  # The image which is similar.
+  image: Image!
+
+  # The degree of similarity with the image.
+  similarity: Float!
+}

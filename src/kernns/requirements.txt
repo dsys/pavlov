@@ -1,0 +1,6 @@
+Cython
+flask
+annoy
+msgpack
+python-rocksdb
+scipy

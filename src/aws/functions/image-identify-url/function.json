@@ -1,0 +1,8 @@
+{
+  "description": "image identification via imagemagick",
+  "timeout": 120,
+  "memory": 1536,
+  "hooks":{
+    "build": "pip3 install -r requirements.txt -t ."
+  }
+}

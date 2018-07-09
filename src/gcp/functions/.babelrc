@@ -1,0 +1,61 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "6.11.5"
+      }
+    }]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "minify-replace",
+          {
+            "replacements": [
+              {
+                "identifierName": "__ENV__",
+                "replacement": {
+                  "type": "stringLiteral",
+                  "value": "development"
+                }
+              },
+              {
+                "identifierName": "__DEV__",
+                "replacement": {
+                  "type": "booleanLiteral",
+                  "value": true
+                }
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+        "minify-replace",
+          {
+            "replacements": [
+              {
+                "identifierName": "__ENV__",
+                "replacement": {
+                  "type": "stringLiteral",
+                  "value": "production"
+                }
+              },
+              {
+                "identifierName": "__DEV__",
+                "replacement": {
+                  "type": "booleanLiteral",
+                  "value": false
+                }
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: migrations
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+data:
+{{ (.Files.Glob "migrations/postgresql/*").AsConfig | indent 2 }}

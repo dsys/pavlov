@@ -1,0 +1,19 @@
+dependencies:
+- name: migrate
+  condition: migrate.enabled
+- name: cloudsql
+  condition: cloudsql.enabled
+- name: console
+  condition: console.enabled
+- name: circleci
+  condition: circleci.enabled
+- name: openvpn
+  condition: openvpn.enabled
+- name: wordpress
+  condition: wordpress.enabled
+- name: yourls
+  condition: yourls.enabled
+- name: ingress
+  condition: ingress.enabled
+- name: fast-hamm
+  condition: fast-hamm.enabled

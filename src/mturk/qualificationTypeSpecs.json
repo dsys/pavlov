@@ -1,0 +1,14 @@
+{
+    "QualificationTypeSpecs": [
+        {
+            "Name": "Image Content Moderation",
+            "Description": "This Qualification tests for a turker's ability to recognize offensive or copyright content in images.",
+            "Keywords": "image moderation recognition",
+            "TestXMLPath": "QuestionForm.xml",
+            "AnswerKeyXMLPath": "AnswerKey.xml",
+            "RetryDelayInSeconds": 30,
+            "QualificationTypeStatus": "Active",
+            "TestDurationInSeconds": 1800
+        }
+    ]
+}

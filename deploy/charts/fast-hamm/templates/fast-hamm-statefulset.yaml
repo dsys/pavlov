@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: fast-hamm
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  serviceName: fast-hamm
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fast-hamm
+    spec:
+      containers:
+      - name: fast-hamm
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: fast-hamm
+          containerPort: 5000
+        resources: {{ toJson .Values.resources }}
+        volumeMounts:
+        - name: data
+          mountPath: /data
+          readOnly: false
+        readinessProbe:
+          httpGet:
+            path: /_ping
+            port: 5000
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - {{ .Values.volumes.data.accessMode }}
+      resources:
+        requests:
+          storage: {{ .Values.volumes.data.capacity }}

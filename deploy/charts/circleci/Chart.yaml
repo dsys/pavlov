@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Pavlov's CircleCI configuration
+name: circleci
+version: 1.0.0

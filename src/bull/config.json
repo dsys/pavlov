@@ -1,0 +1,9 @@
+{
+  "queues":[
+    {
+      "name": "workflowsQueue",
+      "hostId": "bull",
+      "url": "REDIS_URL"
+    }
+  ]
+}

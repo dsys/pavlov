@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: circleci
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: circleci
+subjects:
+- kind: User
+  name: "circleci@pavlov-mono.iam.gserviceaccount.com"
+  apiGroup: rbac.authorization.k8s.io

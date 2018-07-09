@@ -1,0 +1,56 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: wordpress-web
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  serviceName: wordpress
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        role: web
+    spec:
+      containers:
+      - name: web
+        image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
+        imagePullPolicy: {{ .Values.web.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: wordpress-mariadb
+        - name: WORDPRESS_DB_USER
+          value: root
+        - name: WORDPRESS_DB_PASSWORD
+          value: comehome
+        - name: WORDPRESS_DB_NAME
+          value: wordpress
+        volumeMounts:
+        - name: data
+          mountPath: /var/www/html
+        resources: {{ toJson .Values.web.resources }}
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 80
+      - name: ftp
+        image: "{{ .Values.ftp.image.repository }}:{{ .Values.ftp.image.tag }}"
+        imagePullPolicy: {{ .Values.ftp.image.pullPolicy }}
+        ports:
+        - containerPort: 21
+        volumeMounts:
+        - name: data
+          mountPath: /var/www/html
+        resources: {{ toJson .Values.ftp.resources }}
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - {{ .Values.volumes.web.accessMode }}
+      resources:
+        requests:
+          storage: {{ .Values.volumes.web.capacity }}

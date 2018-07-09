@@ -1,0 +1,22 @@
+{
+  "name": "@pavlov/image-autoresize",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@google-cloud/storage": "^1.5.0",
+    "async-lock": "^1.1.0",
+    "child-process-promise": "^2.2.1",
+    "fast-crc32c": "^1.0.4",
+    "mkdirp-promise": "^5.0.1",
+    "node-fetch": "^1.7.3",
+    "promise-timeout": "^1.1.1",
+    "rmfr": "^1.0.3",
+    "sharp": "^0.18.4",
+    "sharp-phash": "^0.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-minify-replace": "^0.2.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}

@@ -1,0 +1,56 @@
+extend type Query {
+  database(id: ID): Database
+  allDatabases: [Database!]!
+}
+
+extend type Mutation {
+  runQuery(sql: String!): QueryResult!
+}
+
+type Database {
+  id: ID!
+  name: String!
+  inviteURL: URL!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+  schema: DatabaseSchema!
+
+  # The thumbnail of the database.
+  thumbnailURL: URL
+
+  # The kind of icon to use in place of a thumbnail image.
+  thumbnailIcon: String!
+}
+
+type DatabaseGrant {
+  id: ID!
+  permissions: String!
+  user: User!
+  database: Database!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+}
+
+type DatabaseSchema {
+  tables: [TableSchema!]!
+}
+
+type TableSchema {
+  name: String!
+  columns: [ColumnSchema!]!
+}
+
+type ColumnSchema {
+  name: String!
+  type: String!
+}
+
+type QueryResultHeader {
+  label: String!
+  dataKey: String!
+}
+
+type QueryResult {
+  headers: [QueryResultHeader!]!
+  data: [JSON!]!
+}

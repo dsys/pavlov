@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Wordpress
+name: wordpress
+version: 1.0.0

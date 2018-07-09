@@ -1,0 +1,16 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+# Safe operations which are mostly free of side-effects.
+type Query {
+  # Returns `true` if the Pavlov API is working.
+  ok: Boolean!
+}
+
+# Unsafe operations which have side-effects.
+type Mutation {
+  # Returns `true` if the Pavlov API is working.
+  ok: Boolean!
+}

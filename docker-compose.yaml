@@ -1,0 +1,145 @@
+version: '2'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:9.6
+    ports:
+    - 5432:5432
+    environment:
+    - POSTGRES_USER=laika
+    - POSTGRES_PASSWORD=comehome
+    - POSTGRES_DB=pavlov-development
+    - PGDATA=/var/lib/postgresql/data
+    volumes:
+    - ./tmp/volumes/postgres:/var/lib/postgresql/data
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+    - 6379:6379
+    command:
+    - redis-server
+    - --appendonly
+    - 'yes'
+    volumes:
+    - ./tmp/volumes/redis:/data
+
+  bull:
+    container_name: bull
+    image: us.gcr.io/cleargraph-mono/bull:latest
+    ports:
+    - 4567:4567
+    volumes:
+    - ./tmp/volumes/bull:/data
+    links:
+    - redis
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.1.1
+    ports:
+    - 9200:9200
+    - 9300:9300
+    volumes:
+    - ./tmp/volumes/elasticsearch:/usr/share/elasticsearch/data
+
+  api:
+    container_name: api
+    image: us.gcr.io/cleargraph-mono/dev:latest
+    tty: true
+    build:
+      context: ./src/dev
+    command:
+    - nodemon
+    - --exec
+    - "wait-for-it postgres:5432 -- wait-for-it redis:6379 -- wait-for-it elasticsearch:9200 -- node -r babel-register"
+    - index.js
+    ports:
+    - 9000:9000
+    - 9001:9001
+    environment:
+    - SLACK_VALIDATION_TOKEN=SLACK_VALIDATION_TOKEN_HERE
+    - SLACK_APP_TOKEN=SLACK_APP_TOKEN_HERE
+    - REDIS_URL=redis://redis:6379/0
+    - HTTP_PORT=9000
+    - HTTPS_PORT=9001
+    - CD=src/api
+    - GOOGLE_APPLICATION_CREDENTIALS=/mono/etc/gcp/cleargraph-development-api.json
+    volumes:
+    - .:/mono
+    links:
+    - postgres
+    - redis
+    - elasticsearch
+
+  pavlov:
+    container_name: pavlov
+    image: us.gcr.io/cleargraph-mono/dev:latest
+    tty: true
+    build:
+      context: ./src/dev
+    command:
+    - nodemon
+    - --exec
+    - "wait-for-it postgres:5432 -- wait-for-it redis:6379 -- node -r babel-register"
+    - -i
+    - "browser/"
+    - index.js
+    ports:
+    - 9002:9002
+    - 9102:9102
+    environment:
+    - REDIS_URL=redis://redis:6379/0
+    - AUTH_JWT_PUBLIC_KEY=notakey
+    - AUTH_JWT_ALGORITHM=HS256
+    - AUTH_JWT_ISSUER=pavlov.dev
+    - POSTGRES_HOST=postgres
+    - POSTGRES_PORT=5432
+    - POSTGRES_DATABASE=cleargraph-development
+    - POSTGRES_USERNAME_ADMIN=laika
+    - POSTGRES_PASSWORD_ADMIN=comehome
+    - POSTGRES_USERNAME_SANDBOX_R=sandbox_r
+    - POSTGRES_PASSWORD_SANDBOX_R=comehome
+    - POSTGRES_USERNAME_SANDBOX_RW=sandbox_rw
+    - POSTGRES_PASSWORD_SANDBOX_RW=comehome
+    - POSTGRES_USERNAME_EXTERNAL_TASK_SANDBOX=external_task_sandbox
+    - POSTGRES_PASSWORD_EXTERNAL_TASK_SANDBOX=comehome
+    - HTTP_PORT=9002
+    - HTTPS_PORT=9102
+    - CD=src/pavlov
+    - GOOGLE_APPLICATION_CREDENTIALS=/mono/etc/gcp/console-images-dev.json
+    volumes:
+    - ${HOME}/.aws:/root/.aws
+    - .:/mono
+    links:
+    - postgres
+    - elasticsearch
+    - fast-hamm
+    - redis
+
+  dev:
+    image: us.gcr.io/cleargraph-mono/dev:latest
+    tty: true
+    build:
+      context: ./src/dev
+    command:
+    - bash
+    volumes:
+    - ${HOME}/.aws:/root/.aws
+    - ${HOME}/.kube:/root/.kube
+    - ${HOME}/.ssh:/root/.ssh
+    - ${HOME}/.gitconfig:/root/.gitconfig
+    - ${HOME}/.config/gcloud:/root/.config/gcloud
+    - .:/mono
+    - /var/run/docker.sock:/var/run/docker.sock
+
+  fast-hamm:
+    image: us.gcr.io/cleargraph-mono/fast-hamm:latest
+    build:
+      context: ./src/fast-hamm
+    ports:
+    - 5000:5000
+    volumes:
+    - ./tmp/volumes/fast-hamm:/data

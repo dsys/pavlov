@@ -1,0 +1,46 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: openvpn
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  serviceName: openvpn
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: openvpn
+    spec:
+      containers:
+      - name: openvpn
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: ["/etc/openvpn/setup/configure.sh"]
+        ports:
+        - containerPort: 443
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+        resources: {{ toJson .Values.resources }}
+        volumeMounts:
+        - mountPath: /etc/openvpn/setup
+          name: openvpn
+          readOnly: false
+        - mountPath: /etc/openvpn/certs
+          name: certs
+          readOnly: false
+      volumes:
+      - name: openvpn
+        configMap:
+          name: openvpn
+          defaultMode: 0775
+  volumeClaimTemplates:
+  - metadata:
+      name: certs
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: {{ .Values.volumes.certs.capacity }}

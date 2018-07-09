@@ -1,0 +1,1 @@
+DROP TABLE verifications_ip_addresses;

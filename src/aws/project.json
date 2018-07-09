@@ -1,0 +1,8 @@
+{
+  "name": "pavlov-mono",
+  "description": "",
+  "memory": 512,
+  "timeout": 15,
+  "role": "arn:aws:iam::500450929811:role/apex",
+  "environment": {}
+}

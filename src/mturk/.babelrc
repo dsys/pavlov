@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "env",
+    "es2015",
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-syntax-highlight",
+    "add-module-exports",
+    "lodash"
+  ],
+  "ignore": ["flow-typed"],
+  "env": {
+  }
+}

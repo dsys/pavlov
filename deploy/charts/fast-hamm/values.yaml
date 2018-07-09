@@ -1,0 +1,19 @@
+enabled: true
+image:
+  repository: us.gcr.io/cleargraph-mono/fast-hamm
+  tag: latest
+  pullPolicy: Always
+service:
+  type: NodePort
+  externalPort: 5000
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+  requests:
+    cpu: 25m
+    memory: 16Mi
+volumes:
+  data:
+    accessMode: ReadWriteOnce
+    capacity: 32Gi

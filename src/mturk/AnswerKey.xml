@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnswerKey xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/AnswerKey.xsd">
+  <Question>
+    <QuestionIdentifier>clean-ballerina</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-porsche</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-rolling-stones</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-confederate</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-dog</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-doors</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-genie</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-grateful-dead</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-swainston</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-gucci</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-unicorn-dab</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-disney</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-irish</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-kanji</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-dolphins</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-skull</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-nemo</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-dinosaur</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-harry-potter</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-evolution</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-starbucks</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-christmas</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-supreme</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-swastika</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-stark</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-cats</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-raiders</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-nike</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>DIRTY</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-wolf-girl</QuestionIdentifier>
+    <AnswerOption>
+      <SelectionIdentifier>CLEAN</SelectionIdentifier>
+      <AnswerScore>1</AnswerScore>
+    </AnswerOption>
+  </Question>
+
+  <QualificationValueMapping>
+    <PercentageMapping>
+      <MaximumSummedScore>30</MaximumSummedScore>
+    </PercentageMapping>
+  </QualificationValueMapping>
+</AnswerKey>

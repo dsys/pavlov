@@ -1,0 +1,4 @@
+apiVersion: v1
+description: yourls link shortener
+name: yourls
+version: 1.0.0

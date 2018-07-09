@@ -1,0 +1,5 @@
+keras==2.1.0
+Flask==0.12.2
+Pillow==4.1.1
+gevent==1.2.1
+google-api-python-client==1.6.4

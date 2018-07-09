@@ -1,0 +1,242 @@
+extend type Query {
+  # Retrieves your user account.
+  me: User
+
+  # Retrieves an auth token using its unique identifier.
+  authToken(id: ID!): AuthToken
+
+  # Retrieves all of the auth tokens made by you.
+  allAuthTokens: [
+    AuthToken!
+  ]!
+}
+
+extend type Mutation {
+  # Creates a new Pavlov user.
+  createUser(
+    # The new user's desired username.
+    username: String!
+
+    # The new user's desired password.
+    password: String!
+
+    # The new user's desired email.
+    email: String!
+
+    # How the new user would like to be referred to.
+    preferredName: String!
+    
+    # A reCAPTCHA challenge response.
+    recaptchaResponse: String!
+
+    # The new user's invitation code.
+    inviteCode: String!
+
+    # The new user's first access token audience string.
+    audience: String
+  ): CreateUserResult!
+
+  # Creates a new auth token for a Pavlov user.
+  createAuthToken(
+    # The user's username, optional if authenticated.
+    username: String
+
+    # The user's password.
+    password: String!
+    
+    # The audience string for the new auth token.
+    audience: String
+  ): CreateAuthTokenResult!
+
+  # Deletes an auth token for a Pavlov user.
+  deleteAuthToken(
+    # The unique identifier of the auth token.
+    id: ID!
+  ): Ack!
+
+  # Checks if the invite code is associated with a database.
+  checkInviteCode(
+    # The invite code to check.
+    inviteCode: String!
+  ): CheckInviteCodeResult!
+
+  # Checks if the username is available and permissible according to our security policy.
+  checkUsername(
+    # The invite code to use.
+    inviteCode: String!
+
+    # The username to check.
+    username: String!
+  ): CheckUsernameResult!
+
+  # Checks if the password is permissible according to our security policy.
+  checkPassword(
+    # The invite code to use.
+    inviteCode: String!
+
+    # The password to check.
+    password: String!
+  ): CheckPasswordResult!
+
+  # Checks if the email is permissible according to our security policy.
+  checkEmail(
+    # The invite code to use.
+    inviteCode: String!
+
+    # The email to check.
+    email: String!
+  ): CheckEmailResult!
+
+  # Verifies an email address for a user.
+  verifyEmail(
+    # The verification code.
+    verificationCode: String!
+  ): VerifyEmailResult!
+
+  # Resend the email verification message for a user.
+  resendEmailVerification: ResendEmailVerificationResult!
+}
+
+# A Pavlov user.
+type User {
+  # The unique identifier of the Pavlov user.
+  id: ID!
+
+  # The username of the Pavlov user.
+  username: String!
+
+  # How the Pavlov user would like to be referred to.
+  preferredName: String!
+
+  # The primary email address of the Pavlov user.
+  primaryEmail: String!
+
+  # Whether or not the Pavlov user's primary email address has been verified.
+  primaryEmailVerified: Boolean!
+
+  # The thumbnail of the user.
+  thumbnailURL: URL
+
+  # The kind of icon to use in place of a thumbnail image.
+  thumbnailIcon: String!
+}
+
+# An auth token, giving permissions to make requests on behalf of a Pavlov user.
+type AuthToken {
+  # The unique identifier of the auth token.
+  id: ID!
+
+  # The user that the auth token is associated with.
+  user: User!
+
+  # The Pavlov domain which issued the token.
+  issuer: String!
+
+  # The user-supplied name for the primary use of the auth token.
+  audience: String!
+
+  # The time when the auth token expires.
+  expiresAt: Timestamp!
+
+  # The time when the auth token was created.
+  createdAt: Timestamp!
+}
+
+# The response to a `createUser` mutation.
+type CreateUserResult {
+  # Whether or not the user was created.
+  ok: Boolean!
+
+  # The reason the user could not be created.
+  warning: String!
+
+  # The newly created Pavlov user.
+  user: User
+
+  # A signed auth token for the newly created Pavlov user, to be used when making Pavlov API requests.
+  signedAuthToken: String
+
+  # Details regarding the auth token.
+  authToken: AuthToken
+
+  # The default database associated with the newly created user.
+  database: Database
+
+  # The database grant given to the newly created user for their default database.
+  databaseGrant: DatabaseGrant
+}
+
+# The response to a `createAuthToken` mutation.
+type CreateAuthTokenResult {
+  # Whether or not the auth token was created.
+  ok: Boolean!
+
+  # The reason the auth token could not be created.
+  warning: String!
+
+  # The signed auth token, to be used when making Pavlov API requests.
+  signedAuthToken: String
+
+  # Details regarding the auth token.
+  authToken: AuthToken
+}
+
+# The response to a `checkInviteCode` mutation.
+type CheckInviteCodeResult {
+  # Whether or not the invite code provided is ok.
+  ok: Boolean!
+
+  # The database associated with the invite code.
+  database: Database
+}
+
+# The response to a `checkUsername` mutation.
+type CheckUsernameResult {
+  # Whether or not the username provided is ok.
+  ok: Boolean!
+
+  # The reasons the username is not ok.
+  warning: String!
+}
+
+# The response to a `checkPassword` mutation.
+type CheckPasswordResult {
+  # Whether or not the password provided is ok.
+  ok: Boolean!
+
+  # The score given to the password's strength out of 1.
+  strength: Float!
+
+  # The reason the password is not ok.
+  warning: String!
+
+  # Suggestions for how to make the password better.
+  suggestions: [String!]!
+}
+
+# The response to a `checkEmail` mutation.
+type CheckEmailResult {
+  # Whether or not the email provided is ok.
+  ok: Boolean!
+
+  # The reason the email is not ok.
+  warning: String!
+
+  # The normalized email address.
+  normalized: String
+}
+
+# The response to a `verifyEmail` mutation.
+type VerifyEmailResult {
+  # Whether or not the email was verified.
+  ok: Boolean!
+
+  # The reason the email was not verified.
+  warning: String!
+}
+
+# The response to a `resendEmailVerification` mutation.
+type ResendEmailVerificationResult {
+  # Whether or not the email verification was sent.
+  ok: Boolean!
+}

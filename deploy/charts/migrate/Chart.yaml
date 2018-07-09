@@ -1,0 +1,4 @@
+apiVersion: v1
+description: migration utility
+name: migrate
+version: 1.0.0

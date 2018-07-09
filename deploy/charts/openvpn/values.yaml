@@ -1,0 +1,27 @@
+enabled: true
+image:
+  repository: jfelten/openvpn-docker
+  tag: 1.1.0
+  pullPolicy: IfNotPresent
+service:
+  type: LoadBalancer
+  externalPort: 443
+volumes:
+  certs:
+    capacity: 2M
+resources:
+  limits:
+    cpu: 500m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 128Mi
+openvpn: 
+  # Network allocated for openvpn clients (default: 10.240.0.0).
+  OVPN_NETWORK: 10.240.0.0
+  # Network subnet allocated for openvpn client (default: 255.255.0.0).
+  OVPN_SUBNET:  255.255.0.0
+  # Kubernetes pod network (optional).
+  OVPN_K8S_POD_NETWORK: "10.0.0.0"
+  # Kubernetes pod network subnet (optional).
+  OVPN_K8S_POD_SUBNET: "255.0.0.0"

@@ -1,0 +1,47 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: yourls-mariadb
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  serviceName: yourls-mariadb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: yourls
+        role: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: "{{ .Values.mariadb.image.repository }}:{{ .Values.mariadb.image.tag }}"
+        imagePullPolicy: {{ .Values.mariadb.image.pullPolicy }}
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: comehome
+        - name: MYSQL_USER
+          value: laika
+        - name: MYSQL_PASSWORD
+          value: comehome
+        - name: MYSQL_DATABASE
+          value: yourls
+        resources: {{ toJson .Values.mariadb.resources }}
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+          readOnly: false
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - {{ .Values.volumes.mariadbData.accessMode }}
+      resources:
+        requests:
+          storage: {{ .Values.volumes.mariadbData.capacity }}

@@ -1,0 +1,65 @@
+enabled: true
+web:
+  image:
+    repository: us.gcr.io/cleargraph-mono/wordpress
+    tag: latest
+    pullPolicy: Always
+  service:
+    type: NodePort
+    externalPort: 80
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 25m
+      memory: 16Mi
+ftp:
+  image:
+    repository: us.gcr.io/cleargraph-mono/wordpress-ftp
+    tag: latest
+    pullPolicy: Always
+  resources:
+    limits:
+      cpu: 500m
+      memory: 128Mi
+    requests:
+      cpu: 25m
+      memory: 16Mi
+mariadb:
+  image:
+    repository: mariadb
+    tag: 10.1
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    externalPort: 3306
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 25m
+      memory: 16Mi
+phpmyadmin:
+  image:
+    repository: phpmyadmin/phpmyadmin
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    externalPort: 80
+  resources:
+    limits:
+      cpu: 500m
+      memory: 128Mi
+    requests:
+      cpu: 25m
+      memory: 16Mi
+volumes:
+  web:
+    accessMode: ReadWriteOnce
+    capacity: 32Gi
+  mariadb:
+    accessMode: ReadWriteOnce
+    capacity: 32Gi

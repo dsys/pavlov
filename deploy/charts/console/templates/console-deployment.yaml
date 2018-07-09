@@ -1,0 +1,194 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: console
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: console
+      annotations:
+        secretsChecksum: {{ toJson .Values.secrets | sha256sum }}
+    spec:
+      containers:
+      - name: console
+        image: "{{ .Values.image.repository }}:{{ .Values.global.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        env:
+        - name: BASE_URL
+          value: {{ .Values.baseURL | quote }}
+        - name: API_BASE_URL
+          value: {{ .Values.apiBaseURL | quote }}
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /secret/gcp.key
+        - name: RAVEN_DSN
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: raven.dsn
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.host
+        - name: POSTGRES_PORT
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.port
+        - name: POSTGRES_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.database
+        - name: POSTGRES_USERNAME_ADMIN
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.admin.username
+        - name: POSTGRES_PASSWORD_ADMIN
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.admin.password
+        - name: POSTGRES_USERNAME_SANDBOX_R
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.sandboxR.username
+        - name: POSTGRES_PASSWORD_SANDBOX_R
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.sandboxR.password
+        - name: POSTGRES_USERNAME_SANDBOX_RW
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.sandboxRW.username
+        - name: POSTGRES_PASSWORD_SANDBOX_RW
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.sandboxRW.password
+        - name: POSTGRES_USERNAME_EXTERNAL_TASK_SANDBOX
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.externalTaskSandbox.username
+        - name: POSTGRES_PASSWORD_EXTERNAL_TASK_SANDBOX
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: postgres.externalTaskSandbox.password
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: aws.key
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: aws.secret
+        - name: AUTH_JWT_PUBLIC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: jwt.publicKey
+        - name: AUTH_JWT_PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: jwt.privateKey
+        - name: AUTH_JWT_EXPIRATION
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: jwt.tokenExpiration
+        - name: AUTH_JWT_ALGORITHM
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: jwt.algorithm
+        - name: AUTH_JWT_ALGORITHM
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: jwt.algorithm
+        - name: AUTH_JWT_ISSUER
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: jwt.issuer
+        - name: AUTH_PBKDF2_ITERATIONS
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: pbkdf2.iterations
+        - name: AUTH_PBKDF2_KEY_LENGTH
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: pbkdf2.keyLength
+        - name: AUTH_PBKDF2_SALT_LENGTH
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: pbkdf2.saltLength
+        - name: AUTH_PBKDF2_DIGEST
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: pbkdf2.digest
+        - name: MAILGUN_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: mailgun.apiKey
+        - name: MAILGUN_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: mailgun.domain
+        - name: ELASTICSEARCH_URL
+          valueFrom:
+            secretKeyRef:
+              name: console
+              key: elasticsearch.url
+        readinessProbe:
+          httpGet:
+            path: /_ping
+            port: 80
+        resources: {{ toJson .Values.resources }}
+        volumeMounts:
+        - name: secret
+          mountPath: /secret
+      - name: cloudsql-proxy
+        image: "{{ .Values.global.cloudsql.image.repository }}:{{ .Values.global.cloudsql.image.tag }}"
+        imagePullPolicy: {{ .Values.global.cloudsql.image.pullPolicy }}
+        command:
+        - /cloud_sql_proxy
+        - -instances={{ .Values.global.cloudsql.instance }}=tcp:0.0.0.0:5432
+        - -credential_file=/secrets/cloudsql/credentials.json
+        ports:
+        - containerPort: 5432
+        readinessProbe:
+          tcpSocket:
+            port: 5432
+        volumeMounts:
+        - name: cloudsql-instance-credentials
+          mountPath: /secrets/cloudsql
+          readOnly: true
+      volumes:
+      - name: secret
+        secret:
+          secretName: console
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql-instance-credentials

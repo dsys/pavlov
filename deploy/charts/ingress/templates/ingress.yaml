@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  rules:
+  - host: {{ .Values.global.ingress.console.host }}
+    http:
+      paths:
+      - backend:
+          serviceName: console
+          servicePort: http
+  - host: {{ .Values.global.ingress.apiV1.host }}
+    http:
+      paths:
+      - backend:
+          serviceName: console
+          servicePort: http

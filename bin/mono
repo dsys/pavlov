@@ -1,0 +1,175 @@
+#! /bin/bash
+
+set -euo pipefail
+
+SUBCOMMAND=
+PROJECTS=()
+LATEST=false
+FIX=false
+DOCKER_TAG=latest
+
+export CLEARGRAPH_MONO=`git rev-parse --show-toplevel`
+export POSTGRES_URL=${POSTGRES_URL:-postgres://laika:comehome@localhost:5432/cleargraph-development}
+
+function print_usage {
+  echo "usage: $0 [opts] PROJECTS"
+  echo
+  echo "Manages Cleargraph's projects in the monorepo."
+  echo
+  echo "Commands:"
+  echo
+  echo "  help          This help message"
+  echo "  install       Installs dependencies for a project"
+  echo "  test          Runs the tests for a project"
+  echo "  watch         Watches for changes and runs tests for a project"
+  echo "  lint          Lints the source files for a project"
+  echo "  push          Pushes a project's Docker image"
+  echo "  build         Builds a project's Dockerfile"
+  echo "  start         Starts a project's Docker container"
+  echo "  run           Runs a project's Docker container, then exits"
+  echo "  pre-commit    Runs the pre-commit checks"
+  echo "  cloc          Counts lines of code"
+  echo
+  echo "Options:"
+  echo
+  echo "  --tag=latest  Set the Docker image tag (default: latest)"
+  echo "  --latest      Tag the Docker image as latest"
+  echo "  --help        This help message"
+}
+
+function project_docker_image {
+  echo "us.gcr.io/cleargraph-mono/`basename $1`:${2:-$DOCKER_TAG}";
+}
+
+function project_dir {
+  if [[ "$1" = root ]]; then
+    echo "$CLEARGRAPH_MONO"
+  else
+    echo "$CLEARGRAPH_MONO/src/$1"
+  fi
+}
+
+function project_git_dir {
+  if [[ "$1" = root ]]; then
+    echo ""
+  else
+    echo "src/$1"
+  fi
+}
+
+function find_staged_files {
+  git diff --name-only --cached
+}
+
+function find_all_files {
+  (find_staged_files; \
+    git ls-tree -r HEAD --name-only) | uniq
+}
+
+function lint_javascript {
+  JS_FILES=`find_all_files | grep "^${1:-}.*\.js$"`
+  ESLINT_FLAGS="-c .eslintrc.json --quiet"
+  if [[ "$FIX" = true ]]; then
+    ESLINT_FLAGS="$ESLINT_FLAGS --fix"
+  fi
+  ./node_modules/.bin/eslint $ESLINT_FLAGS $JS_FILES
+}
+
+function install_precommit_hook {
+  local hook_path="$CLEARGRAPH_MONO/.git/hooks/pre-commit"
+	if [[ ! -e "$hook_path" ]]; then
+    printf "#!/bin/bash\nset -euo pipefail\nmono pre-commit" \
+        > "$hook_path"
+    chmod +x "$hook_path"
+  fi
+}
+
+while [[ $# -gt 0 ]]; do
+  opt="$1"
+  shift;
+  case "$opt" in
+    "--help")
+      print_usage
+      exit 0;;
+    "--latest")
+      LATEST=true;;
+    "--fix")
+      FIX=true;;
+    "--tag")
+      DOCKER_TAG="$1";
+      shift;;
+    "--tag="*)
+      DOCKER_TAG="${opt#*=}";;
+    *)
+      if [[ -z "$SUBCOMMAND" ]]; then
+        SUBCOMMAND="$opt"
+      else
+        PROJECTS+=("$opt")
+      fi;;
+  esac
+done
+
+install_precommit_hook
+
+if [[ ${#PROJECTS[@]} -eq 0 ]]; then
+  PROJECTS+=('root')
+fi
+
+for prj in ${PROJECTS[@]}; do
+  PROJECT_DOCKER_IMAGE=`project_docker_image "$prj"`
+  PROJECT_DIR=`project_dir "$prj"`
+  PROJECT_GIT_DIR=`project_git_dir "$prj"`
+
+  case "$SUBCOMMAND" in
+    "help")
+      print_usage;
+      exit 0;;
+
+    "install")
+      cd "$PROJECT_DIR" && make install;;
+
+    "test")
+      cd "$PROJECT_DIR" && make test;;
+
+    "watch")
+      cd "$PROJECT_DIR" && make watch;;
+
+    "clean")
+      cd "$PROJECT_DIR" && make clean;;
+
+    "lint")
+      lint_javascript "$PROJECT_GIT_DIR";;
+
+    "build")
+      cd "$PROJECT_DIR" && make pre-build 2> /dev/null || true;
+      docker build -t "$PROJECT_DOCKER_IMAGE" .;;
+
+    "push")
+      gcloud docker -- push "$PROJECT_DOCKER_IMAGE"
+      if [[ "$LATEST" = true ]]; then
+        LATEST_DOCKER_IMAGE=`project_docker_image "$prj" latest`
+        docker tag "$PROJECT_DOCKER_IMAGE" "$LATEST_DOCKER_IMAGE"
+        gcloud docker -- push "$LATEST_DOCKER_IMAGE"
+      fi;;
+
+    "pre-commit")
+      lint_javascript;;
+
+    "start")
+      docker-compose up "$prj";;
+
+    "run")
+      docker-compose run --rm "$prj";;
+
+    "cloc")
+      if [[ "$prj" = root ]]; then
+        cloc --exclude_dir=node_modules,vendor,data,flow-typed src
+      else
+        cloc --exclude_dir=node_modules,vendor,data,flow-typed "$PROJECT_DIR"
+      fi;;
+
+    "*")
+      echo "unknown subcommand $SUBCOMMAND";
+      exit 1;;
+  esac
+done

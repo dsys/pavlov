@@ -1,0 +1,5 @@
+{
+  "description": "image resizing via imagemagick",
+  "timeout": 120,
+  "memory": 1536
+}

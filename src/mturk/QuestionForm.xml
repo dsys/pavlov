@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuestionForm xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd">
+  <Overview>
+    <Title>Image Moderation and Brand Recognition</Title>
+    <FormattedContent>
+      <![CDATA[
+      <p>
+        You are helping to identify images that may incur a lawsuit upon reprinting.
+      </p>
+      <p>
+        This includes images that contain any of the following.
+      </p>
+      <h3><b>Dirty Content</b></h3>
+      <ul>
+        <li>Logos</li>
+        <li>Brand Names</li>
+        <li>Musicians and Bands</li>
+        <li>Movies, TV Shows and Characters</li>
+        <li>Sports Teams</li>
+        <li>Hate Speech</li>
+      </ul>
+      <p>
+        If an image DOES contain any of the above, mark it DIRTY ✘
+      </p>
+      <p>
+        If an image DOES NOT contain any of the above, mark it CLEAN ✔
+      </p>
+      ]]>
+    </FormattedContent>
+  </Overview>
+
+  <Question>
+    <QuestionIdentifier>clean-ballerina</QuestionIdentifier>
+    <DisplayName>Image 1</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-ballerina.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-porsche</QuestionIdentifier>
+    <DisplayName>Image 2</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-porsche-logo.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-rolling-stones</QuestionIdentifier>
+    <DisplayName>Image 3</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-rolling-stones.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-confederate</QuestionIdentifier>
+    <DisplayName>Image 4</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-confederate.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-dog</QuestionIdentifier>
+    <DisplayName>Image 5</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-trippy-dog.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-doors</QuestionIdentifier>
+    <DisplayName>Image 6</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-doors-logo.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-genie</QuestionIdentifier>
+    <DisplayName>Image 7</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-genie-lamp.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-grateful-dead</QuestionIdentifier>
+    <DisplayName>Image 8</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-grateful-dead.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-swainston</QuestionIdentifier>
+    <DisplayName>Image 9</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-swainston.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-gucci</QuestionIdentifier>
+    <DisplayName>Image 10</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-gucci.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-unicorn-dab</QuestionIdentifier>
+    <DisplayName>Image 11</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-unicorn-dab.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-disney</QuestionIdentifier>
+    <DisplayName>Image 12</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-disney.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-irish</QuestionIdentifier>
+    <DisplayName>Image 13</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-irish.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-kanji</QuestionIdentifier>
+    <DisplayName>Image 14</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-love-kanji.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-dolphins</QuestionIdentifier>
+    <DisplayName>Image 15</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-miami-dolphins.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-skull</QuestionIdentifier>
+    <DisplayName>Image 16</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-skull.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-nemo</QuestionIdentifier>
+    <DisplayName>Image 17</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-Nemo.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-watermelon</QuestionIdentifier>
+    <DisplayName>Image 18</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-watermelon.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-dinosaur</QuestionIdentifier>
+    <DisplayName>Image 19</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-dinosaur.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-harry-potter</QuestionIdentifier>
+    <DisplayName>Image 20</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-Harry-potter-logo.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-evolution</QuestionIdentifier>
+    <DisplayName>Image 21</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-evolution.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-starbucks</QuestionIdentifier>
+    <DisplayName>Image 22</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-starbucks-logo.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-christmas</QuestionIdentifier>
+    <DisplayName>Image 23</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-christmas.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-supreme</QuestionIdentifier>
+    <DisplayName>Image 24</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-Supreme_logo.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-swastika</QuestionIdentifier>
+    <DisplayName>Image 25</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-swastika.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-stark</QuestionIdentifier>
+    <DisplayName>Image 26</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-winter-is-coming.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-cats</QuestionIdentifier>
+    <DisplayName>Image 27</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-cats.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-raiders</QuestionIdentifier>
+    <DisplayName>Image 28</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-raiders.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>dirty-nike</QuestionIdentifier>
+    <DisplayName>Image 29</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/DIRTY-nike.jpg</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+  <Question>
+    <QuestionIdentifier>clean-wolf-girl</QuestionIdentifier>
+    <DisplayName>Image 30</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Binary>
+        <MimeType>
+          <Type>image</Type>
+          <SubType>png</SubType>
+        </MimeType>
+        <DataURL>https://storage.googleapis.com/cleargraph-moderation-examples/MTurk%20Test/CLEAN-wolf-girl.png</DataURL>
+        <AltText>No Hints!</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>CLEAN</SelectionIdentifier>
+            <Text>CLEAN ✔</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>DIRTY</SelectionIdentifier>
+            <Text>DIRTY ✘</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+
+
+</QuestionForm>

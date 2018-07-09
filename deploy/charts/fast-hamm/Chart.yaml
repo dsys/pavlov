@@ -1,0 +1,4 @@
+apiVersion: v1
+description: fast-hamm for exact Hamming distance indices
+name: fast-hamm
+version: 1.0.0

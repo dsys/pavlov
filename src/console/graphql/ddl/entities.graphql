@@ -1,0 +1,374 @@
+# An entity in the entity graph.
+interface Entity {
+  # The unique identifier of the entity.
+  id: ID!
+
+  # A textual representation of the entity.
+  display: String!
+}
+
+# An education experience of a person at an organization
+type EducationExperience implements Entity {
+  # The unique identifier of the EducationExperience
+  id: ID!
+
+  # Summary of the education experience
+  display: String!
+
+  # Degrees received or in progress
+  degrees: [String!]!
+
+  # Time at which education was complete
+  endDate: Timestamp
+
+  # Whether the person is still pursuing this education program
+  isCurrent: Boolean
+
+  # Majors associated with the degree
+  majors: [String!]!
+
+  # Minors associated with the degree
+  minors: [String!]!
+
+  # The educating organization
+  organization: Organization!
+
+  # Person being educated
+  person: Person!
+
+  # Time at which education commenced
+  startDate: Timestamp
+}
+
+# An email address owned by an entity
+type Email implements Entity {
+  # The unique identifier of the Email
+  id: ID!
+
+  # Email address
+  display: String!
+
+  # Email address
+  address: String!
+
+  # Domain for the email address
+  domain: String
+
+  # Provider tha manages the email server
+  emailProvider: Product
+
+  # Indication of whether this is a primary email for the recipient
+  isPrimary: Boolean
+
+  # People related to the email
+  relatedPeople: [Person!]!
+
+  # Organizations related to the email
+  relatedOrganizations: [Organization!]!
+
+  # Type of the email
+  type: String
+}
+
+# An industry made up of organizations in a specific operational domain
+type Industry implements Entity {
+  # The unique identifier of the Industry
+  id: ID!
+
+  # The name of the industry
+  display: String!
+
+  # How an industry is referenced
+  name: String!
+}
+
+# A language spoken by people
+type Language implements Entity {
+  # The unique identifier of the Language
+  id: ID!
+
+  # The name of the language
+  display: String!
+
+  # The name of the language
+  name: String!
+}
+
+# A location on Earth for the given entity
+type Location implements Entity {
+  # The unique identifier of the Location
+  id: ID!
+
+  # Name associated with a given location
+  display: String!
+
+  # Name associated with a given location
+  name: String!
+
+  # Timezone associated with a given location
+  timezone: Timezone
+
+  # Continent of the given location
+  continent: String
+
+  # Country of the given location
+  country: String
+
+  # Whether this is the primary location for the given entity
+  isPrimary: Boolean
+
+  # Latitude associated with this countries given location
+  latitude: String
+
+  # The locality associated with this location
+  locality: String
+
+  # Longitude associated with this countries given location
+  longitude: String
+
+  # Organizations that are related to the business
+  relatedOrganizations: [Organization!]!
+
+  # People that are related to the business
+  relatedPeople: [Person!]!
+
+  # The PO box associated with this location
+  poBox: String
+
+  # Postal code associated with a given location
+  postalCode: String
+
+  # Region associated with a given location
+  region: String
+
+  # State of the given location
+  state: String
+
+  # Street address associated with a given location
+  streetAddress: String
+
+  # Type of location this is i.e. home, headquarters, regional office, etc.
+  type: String
+}
+
+# An organization such as a school, NGO, corporation, club, etc.
+type Organization implements Entity {
+  # The unique identifier of the Organization
+  id: ID!
+
+  # Name of the given organization
+  display: String!
+
+  # Name of the given organization
+  name: String!
+
+  # Any entities this business does business as
+  DBAs: [String!]!
+
+  # Ranking of the Alexa global traffic to a website
+  alexaGlobalRank: Int
+
+  # Ranking of the Alexa US traffic to a website
+  alexaUSRank: Int
+
+  # Any competing organizations
+  competitors: [Organization!]!
+
+  # A description of the organization
+  description: String
+
+  # Any emails associated with the organization
+  emails: [Email!]!
+
+  # Number of employees
+  employeeCount: String
+
+  # Any people that are employed by the organization
+  employees: [Person!]!
+
+  # Approximate date the company was founded
+  foundingDate: Timestamp
+
+  # Images assocaited with the organization
+  images: [Image!]!
+
+  # The industries the organization operates in
+  industries: [Industry!]!
+
+  # The legal name of the organization
+  legalName: String
+
+  # Any locations the organization operates in
+  locations: [Location!]!
+
+  # The most recent market capitalization or valuation of the organization
+  marketCap: Int
+
+  # Phone numbers associated with the organization
+  phoneNumbers: [PhoneNumber!]!
+
+  # The primary website for the organization
+  primaryWebsite: Website
+
+  # Products produced by the organization
+  products: [Product!]!
+
+  # Total amount of capital raised
+  raised: Int
+
+  # Organizations that are related to the business
+  relatedOrganizations: [Organization!]!
+
+  # People that are related to the business
+  relatedPeople: [Person!]!
+
+  # The organizations social media profiles
+  socialProfiles: [SocialProfile!]!
+
+  # Websites associated with the organization
+  websites: [Website!]!
+}
+
+# A phone number
+type PhoneNumber implements Entity {
+  # The unique identifier of the PhoneNumber
+  id: ID!
+
+  # A phone number
+  display: String!
+
+  # Area code of this phone number
+  areaCode: String
+
+  # Country code of this phone number
+  countryCode: String
+
+  # Extension of this phone number
+  extension: String
+
+  # A phone number
+  number: String!
+
+  # The type of phone number this is i.e. mobile, home, office, support, etc.
+  type: String
+
+  # People related to the image
+  relatedPeople: [Person!]!
+
+  # Organizations related to the image
+  relatedOrganizations: [Organization!]!
+}
+
+# A product or service associated with an entity
+type Product implements Entity {
+  # The unique identifier of the Product
+  id: ID!
+
+  # The name of the product
+  display: String!
+
+  # The name of the product
+  name: String!
+
+  # Website associated with the given product or service
+  website: Website!
+}
+
+# Profile for a social media account
+type SocialProfile implements Entity {
+  # The unique identifier of the SocialProfile
+  id: ID!
+
+  # Primary username
+  display: String!
+
+  # Usernames, aliases, or id's associated with the account
+  aliases: [String!]!
+
+  # The primary alias associated with the account
+  primaryAlias: String
+
+  # Biography or summary associated with the profile
+  bio: String
+
+  # Most recent number of account followers
+  followers: Int
+
+  # Whether the account is active or not
+  isActive: Boolean
+
+  # Social network or product a profile is associated with
+  network: Product
+
+  # URL for the profile
+  url: String
+}
+
+# Website associated with an entity
+type Website implements Entity {
+  # The unique identifier of the Website
+  id: ID!
+
+  # The name or URL for the website
+  display: String!
+
+  # The name for the website
+  name: String!
+
+  # URL of the website
+  url: URL!
+
+  # Domain of the website
+  domain: String!
+
+  # Type of website
+  type: String
+
+  # People related to the image
+  relatedPeople: [Person!]!
+
+  # Organizations related to the image
+  relatedOrganizations: [Organization!]!
+}
+
+# Work experience of a person at an organization
+type WorkExperience implements Entity {
+  # The unique identifier of the WorkExperience
+  id: ID!
+
+  # Title of the work experience
+  display: String!
+
+  # Organization where this person worked
+  organization: Organization!
+
+  # Person who was employed
+  person: Person!
+
+  # Roles held at this organization
+  roles: [WorkRole!]!
+}
+
+# A work experience of a person at an organization
+type WorkRole implements Entity {
+  # The unique identifier of the WorkRole
+  id: ID!
+
+  # Title of this role
+  display: String!
+
+  # Title of this role
+  title: String
+
+  # Time at which this person ended this role
+  endDate: Timestamp
+
+  # Whether this person still holds this role
+  isCurrent: Boolean
+
+  # Time at which this person started this role
+  startDate: Timestamp
+
+  # The work experience associated with this role
+  workExperience: WorkExperience!
+}

@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: yourls-web
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  replicas: {{ .Values.web.replicas }}
+  template:
+    metadata:
+      labels:
+        app: yourls
+        role: web
+    spec:
+      containers:
+      - name: yourls
+        image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
+        imagePullPolicy: {{ .Values.web.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        env:
+{{ if .Values.global.ingress.yourls }}
+        - name: YOURLS_SITE
+          value: https://{{ .Values.global.ingress.yourls.host }}
+{{ end }}
+        - name: YOURLS_DB_USER
+          value: laika
+        - name: YOURLS_DB_PASS
+          value: comehome
+        - name: YOURLS_DB_HOST
+          value: yourls-mariadb
+        - name: YOURLS_DB_NAME
+          value: yourls
+        - name: YOURLS_COOKIEKEY
+          valueFrom:
+            secretKeyRef:
+              name: yourls
+              key: cookie
+        - name: YOURLS_USERS
+          valueFrom:
+            secretKeyRef:
+              name: yourls
+              key: users
+        readinessProbe:
+          httpGet:
+            path: /admin/install.php
+            port: 80
+        resources: {{ toJson .Values.web.resources }}

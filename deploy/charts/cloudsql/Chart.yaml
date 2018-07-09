@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Google Cloud SQL configuration
+name: cloudsql
+version: 1.0.0

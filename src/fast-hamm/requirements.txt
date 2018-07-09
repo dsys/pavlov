@@ -1,0 +1,5 @@
+Cython
+flask
+msgpack
+python-rocksdb
+numpy

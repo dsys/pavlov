@@ -1,0 +1,426 @@
+extend type Query {
+  # Retrieves a workflow using its unique identifier.
+  workflow(
+    # The unique identifier of the workflow.
+    id: ID
+  ): Workflow
+
+  # Retrieves a target using its unique identifier.
+  target(
+    # The unique identifier of the target.
+    id: ID!
+  ): Target
+
+  # Retrieves a decision using its unique identifier.
+  decision(
+    # The unique identifier of the decision.
+    id: ID
+  ): Decision
+
+  # Retrieves an external task using its unique identifier.
+  externalTask(
+    # The unique identifier of the external task.
+    id: ID
+  ): ExternalTask
+
+  # Searches targets associated with the workflow.
+  searchTargets(
+    workflowId: ID!,
+    environment: Environment!,
+    searchTerms: [String!]!,
+    cursor: String
+  ): TargetSearchResults!
+
+  # Retrieves all the available workflows.
+  allWorkflows: [Workflow!]!
+}
+
+extend type Mutation {
+  # Resolves a target.
+  resolveTarget(
+    # The workflow to look up.
+    workflow: WorkflowLookupFieldsInput!
+
+    # The actor lookup fields.
+    actor: ActorLookupFieldsInput
+
+    # The image lookup fields.
+    image: ImageLookupFieldsInput
+
+    # The image lookup fields.
+    ipAddress: IPAddressLookupFieldsInput
+  ): Target
+
+  # Adds a decision to a target.
+  addDecision(
+    # The unique identifier of the target.
+    id: ID!
+
+    # The label of the decision.
+    label: String!
+
+    # The score of the decision.
+    score: Float
+
+    # The reason for the decision.
+    reasons: [String!]
+  ): Decision
+
+  # Adds a decision to an external task.
+  addExternalTaskDecision(
+    # The unique identifier of the external task.
+    id: ID!
+
+    # The label of the decision.
+    label: String!
+
+    # The score of the decision.
+    score: Float
+
+    # The reason for the decision.
+    reasons: [String!]
+
+    # The metadata associated with the decision.
+    metadata: JSON
+  ): Ack!
+
+  # Updates a workflow's settings.
+  updateWorkflowSettings(
+    # The unique identifier of the workflow.
+    id: ID!
+
+    # The environment of the workflow.
+    environment: Environment!
+
+    # The new decision webhook URL.
+    updateWebhookURL: URL
+
+    # Whether or not to regenerate the update webhook secret.
+    regenerateUpdateWebhookSecret: Boolean
+  ): Workflow
+
+  # Resends an update webhook.
+  resendUpdateWebhook(
+    # The unique identifier of the update.
+    id: ID!
+  ): Update
+}
+
+# Fields with which workflows can be looked up.
+input WorkflowLookupFieldsInput {
+  id: String
+  name: String
+}
+
+# The environment a target can live in.
+enum Environment {
+  LIVE
+  TEST
+}
+
+# A workflow.
+type Workflow {
+  # The unique identifier of the workflow.
+  id: ID!
+
+  # The name of the workflow.
+  name: String!
+
+  # All possible labels associated with the workflow.
+  possibleLabels: [String!]!
+
+  # All labels to show in the workflow's decision drawer.
+  drawerLabels: [String!]!
+
+  # Suggestions for search terms.
+  suggestedSearchTerms: [String!]!
+
+  # Aggregate historical data on the number of targets of each label by day.
+  histogramData(environment: Environment!): [JSON!]!
+
+  # The thumbnail of the workflow.
+  thumbnailURL: URL
+
+  # The kind of icon to use in place of a thumbnail image.
+  thumbnailIcon: String!
+
+  # Retrieves the settings for a particular environment of a workflow.
+  settings(environment: Environment!): WorkflowSettings!
+}
+
+# The settings of a workflow.
+type WorkflowSettings {
+  # The environment of the workflow settings.
+  environment: Environment!
+
+  # Returns the URL for running this workflow asynchronously.
+  asyncURL: URL!
+
+  # Returns the URL for running this workflow synchronously.
+  syncURL: URL!
+
+  # The URL for the sandbox of this workflow.
+  sandboxURL: URL!
+
+  # The URL to send updates to.
+  updateWebhookURL: String!
+
+  # The secret to use when sending the update to the webhook URL.
+  updateWebhookSecret: String!
+}
+
+# An target of a workflow.
+type Target {
+  # The unique identifier of the target.
+  id: ID!
+
+  # The workflow associated with the target.
+  workflow: Workflow!
+
+  # The thumbnail of the target.
+  thumbnailURL: URL
+
+  # The kind of icon to use in place of a thumbnail image.
+  thumbnailIcon: String!
+
+  # The title of the target.
+  title: String!
+
+  # The subtitle of the target.
+  subtitle: String!
+
+  # The label of the target.
+  label: String!
+
+  # The score of the target.
+  score: Float
+
+  # The reason for the status of the target.
+  reasons: [String!]!
+
+  # The state of the target.
+  state: JSON
+
+  # The aliases associated with the target.
+  aliases: [String!]!
+
+  # Whether or not the target has an actor.
+  hasActor: Boolean!
+
+  # Whether or not the target has an image.
+  hasImage: Boolean!
+
+  # Whether or not the target has an image.
+  hasIPAddress: Boolean!
+
+  # The actor target.
+  actor: Actor
+
+  # The image target.
+  image: Image
+
+  # The IP address target.
+  ipAddress: IPAddress
+
+  # The environment of the target.
+  environment: Environment!
+
+  # The decisions made on the target.
+  decisions: [Decision!]!
+
+  # The updates on the target.
+  updates: [Update!]!
+
+  # The external tasks on the target.
+  externalTasks: [ExternalTask!]!
+
+  # The time when the target was created.
+  createdAt: Timestamp!
+
+  # The time when the target was updated.
+  updatedAt: Timestamp!
+}
+
+# A decision on a workflow made by an automated system or human.
+type Decision {
+  # The unique identifier of the decision.
+  id: ID!
+
+  # The textual description of the decision.
+  display: String!
+
+  # The target associated with the decision.
+  target: Target!
+
+  # The label of the decision.
+  label: String!
+
+  # The score of the decision.
+  score: Float
+
+  # The reason for the decision.
+  reasons: [String!]!
+
+  # The metadata associated with the decision.
+  metadata: JSON
+
+  # The external task associated with the decision.
+  externalTask: ExternalTask
+
+  # The time when the decision was created.
+  createdAt: Timestamp!
+}
+
+# An update to a target of a workflow.
+type Update {
+  # The unique identifier of the decision.
+  id: ID!
+
+  # The textual description of the update.
+  display: String!
+
+  # The target associated with this update.
+  target: Target!
+
+  # The event which triggered the update.
+  event: String!
+
+  # The arguments which triggered the update.
+  args: JSON!
+
+  # The decision which triggered the update.
+  decision: Decision
+
+  # The label of the update.
+  label: String!
+
+  # The score of the update.
+  score: Float
+
+  # The reason for the update.
+  reasons: [String!]!
+
+  # The state of the update.
+  state: JSON
+
+  # The aliases associated with the target.
+  aliases: [String!]!
+
+  # The time when the decision was created.
+  createdAt: Timestamp!
+
+  # The HTTP status of the update webhook.
+  webhookStatus: Int
+
+  # The time the update webhook was made.
+  webhookAt: Timestamp
+}
+
+# The service provider for processing external tasks.
+enum ExternalTaskService {
+  MTURK
+}
+
+# An external task type on a workflow.
+type ExternalTaskType {
+  # The unique identifier of the external task type.
+  id: ID!
+
+  # The workflow associated with this external task type.
+  workflow: Workflow!
+
+  # The labels of targets to send to experts for this external task.
+  createLabels: [String!]!
+
+  # The labels experts can use for decisions on external tasks.
+  decisionLabels: [String!]!
+
+  # The instructions related to the external task type.
+  instructions: String!
+
+  # The service provider for the external task type.
+  service: ExternalTaskService!
+
+  # The external task type title.
+  title: String!
+
+  # The external task type description.
+  description: String!
+
+  # The reward in USD to give experts for each assignment.
+  reward: String!
+
+  # The keywords associated with this external task type.
+  keywords: [String!]!
+
+  # The number of seconds to allow experts to process each task.
+  assignmentDuration: Int!
+
+  # The number of seconds to wait before auto-approving decisions from experts.
+  autoapprovalDelay: Int!
+
+  # The number of seconds to allow experts process each external task.
+  lifetime: Int!
+
+  # The maximum number of assignments to make for each external task.
+  maxAssignments: Int!
+
+  # The time the external task type was created.
+  createdAt: Timestamp!
+
+  # The time the external task type was updated.
+  updatedAt: Timestamp!
+}
+
+# An external task on a target.
+type ExternalTask {
+  # The unique identifier of the external task.
+  id: ID!
+
+  # The title of the external task's type
+  type: String
+
+  # The instructions related to the external task.
+  instructions: String!
+
+  # The set of examples used to illustrate rulesets to experts.
+  exampleGroups: [ExampleGroup!]!
+
+  # The labels experts can use for decisions on the external task.
+  decisionLabels: [String!]!
+
+  # The image associated with the external task.
+  image: Image
+
+  # A set of similar images from Google Image Search.
+  googleSimilarImages: [String!]!
+
+  # The URL for the external task.
+  taskURL: URL!
+}
+
+# A group of examples for external tasks.
+type ExampleGroup {
+    # The name of the example group.
+    name: String!
+
+    # The Markdown content that serves as the example.
+    markdown: String!
+}
+
+# The result of a search over the targets.
+type TargetSearchResults {
+  # The cursor for the end of the result list.
+  cursor: String
+
+  # Whether or not there is a next page of results.
+  hasNextPage: Boolean!
+
+  # The list of result targets matching the search query.
+  items: [Target!]!
+}
+
+extend type Image {
+  # The targets associated with the image.
+  targets(databaseId: ID, workflowId: ID!, environment: Environment): [Target!]!
+}

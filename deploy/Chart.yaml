@@ -1,0 +1,4 @@
+apiVersion: v1
+description: The distributed system
+name: cleargraph
+version: 1.0.0

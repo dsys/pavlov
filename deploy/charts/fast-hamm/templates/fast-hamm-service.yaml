@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fast-hamm
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - name: fast-hamm
+    port: {{ .Values.service.externalPort }}
+    targetPort: 5000
+    protocol: TCP
+  selector:
+    app: fast-hamm

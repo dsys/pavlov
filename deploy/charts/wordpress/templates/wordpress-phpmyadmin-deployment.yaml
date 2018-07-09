@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wordpress-phpmyadmin
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        role: phpmyadmin
+    spec:
+      containers:
+      - name: wordpress-phpmyadmin
+        image: "{{ .Values.phpmyadmin.image.repository }}:{{ .Values.phpmyadmin.image.tag }}"
+        imagePullPolicy: {{ .Values.phpmyadmin.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: comehome
+        - name: PMA_HOST
+          value: wordpress-mariadb
+        resources: {{ toJson .Values.phpmyadmin.resources }}

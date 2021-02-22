@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 import fileType from 'file-type';
 import fs from 'fs';
 import imageSize from 'image-size';
-import mkdirp from 'mkdirp-promise';
+import mkdirp from 'mkdirp';
 import sharp from 'sharp';
 import os from 'os';
 import path from 'path';
@@ -218,12 +218,13 @@ async function processImage(imageBuffer) {
       return downloadJSONFile(IMAGE_ARTIFACTS_BUCKET, gcsMetadataPath);
     }
   } catch (err) {
-    console.error(`Error loading cached metadata: ${err.message}`);
+    console.log(`Error loading cached metadata: ${err.message}`);
   }
 
   try {
     console.log(`Writing image to ${tempImagePath}`);
     await mkdirp(tempDir);
+    console.log(`created directory ${tempDir}`);
     await writeFile(tempImagePath, imageBuffer);
 
     console.log(`Detecting size of ${tempImagePath}`);

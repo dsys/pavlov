@@ -2,7 +2,7 @@
 
 import fetch from 'node-fetch';
 import fs from 'fs';
-import mkdirp from 'mkdirp-promise';
+import mkdirp from 'mkdirp';
 import sharpPhash from 'sharp-phash';
 import os from 'os';
 import path from 'path';
@@ -147,8 +147,8 @@ function uploadFile(gcsPath, filePath) {
   }
 }
 
-async function processEvent(event) {
-  const rawGCSPath = event.data.name;
+async function processEvent(data, context, callback) {
+  const rawGCSPath = data.name;
   const rawGCSDir = path.dirname(rawGCSPath);
 
   if (path.basename(rawGCSPath) !== 'raw') {
@@ -156,8 +156,9 @@ async function processEvent(event) {
     return null;
   }
 
-  const eventAge = Date.now() - Date.parse(event.timestamp);
+  const eventAge = Date.now() - Date.parse(context.timestamp);
   if (eventAge > MAX_EVENT_AGE) {
+
     console.error(`Giving up processing image ${rawGCSPath}`);
     return null;
   }
@@ -252,13 +253,15 @@ async function processEvent(event) {
       }
 
       fs.rmdirSync(tempDir);
+      callback();
     } catch (err) {
       console.error(err);
+      callback(err);
     }
   }
 }
 
-exports.run = e => {
-  console.log(`Started processing event for ${e.data.name}`);
-  return processEvent(e);
+exports.run = (data, context, callback) => {
+  console.log(`Started processing event for ${data.name}`);
+  return processEvent(data, context, callback);
 };

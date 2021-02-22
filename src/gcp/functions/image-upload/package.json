@@ -4,12 +4,12 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@google-cloud/storage": "^1.4.0",
-    "@ronomon/crypto-async": "^2.2.1",
+    "@ronomon/crypto-async": "^5.0.1",
     "child-process-promise": "^2.2.1",
     "fast-crc32c": "^1.0.4",
     "file-type": "^7.2.0",
     "image-size": "^0.6.1",
-    "mkdirp-promise": "^5.0.1",
+    "mkdirp": "^1.0.4",
     "node-fetch": "^1.7.3",
     "rmfr": "^1.0.3",
     "sharp": "^0.18.4"
